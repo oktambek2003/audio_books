@@ -1,0 +1,72 @@
+[
+    {
+        "rating":"4.5",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical1.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"4.4",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical2.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"4.3",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical3.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"4.9",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical3.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"4.1",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical2.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"4.8",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical1.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"4.7",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical2.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"3.0",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical2.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"3.9",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical3.jpeg",
+        "voice":""
+    },
+    {
+        "rating":"4.0",
+        "title":"The Water Cure"    ,
+        "text":"Martin Hyatt",
+        "img":"assets/music_vertical3.jpeg",
+        "voice":""
+    }
+]
