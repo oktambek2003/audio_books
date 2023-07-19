@@ -60,7 +60,7 @@ class _AppTab1State extends State<AppTab1> {
                    crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                       Row(children: [
-                        Icon(Icons.star,color: Color.fromARGB(255, 255, 196, 59),size: 24,),
+                        Icon(Icons.star,color:ApColors.starColor,),
                         Text(Books[index]["rating"],style: TextStyle(color: ApColors.MenuColor2),)
                       ],)
                     ,Text(Books[index]["title"],style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)
