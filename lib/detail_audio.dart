@@ -1,12 +1,13 @@
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:market/audio_detail.dart';
-
 import './app_colors.dart' as ApColors;
+import './audio_detail.dart';
 
 class DetailAudio extends StatefulWidget {
-  const DetailAudio({super.key});
+  final booksData;
+  final int index;
+  const DetailAudio({super.key, required this.booksData, required this.index});
 
   @override
   State<DetailAudio> createState() => _DetailAudioState();
@@ -46,7 +47,11 @@ class _DetailAudioState extends State<DetailAudio> {
                 backgroundColor: Colors.transparent,
                 elevation: 0.0,
                 leading: IconButton(
-                    icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
+                    icon: Icon(Icons.arrow_back_ios),
+                    onPressed: () {
+                      player.stop();
+                      Navigator.of(context).pop();
+                    }),
                 actions: [
                   IconButton(onPressed: () {}, icon: Icon(Icons.search)),
                 ],
@@ -66,17 +71,21 @@ class _DetailAudioState extends State<DetailAudio> {
                       height: screenHeight * 0.1,
                     ),
                     Text(
-                      "THE WATER CURE",
+                      this.widget.booksData[this.widget.index]["title"],
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           fontFamily: "Avenir"),
                     ),
                     Text(
-                      "Martin Hyatt",
+                      this.widget.booksData[this.widget.index]["text"],
                       style: TextStyle(fontSize: 20),
                     ),
-                    AudiaPlayer_Page()
+                    AudiaPlayer_Page(
+                      audioPath: this.widget.booksData[this.widget.index]
+                          ["voice"],
+                        
+                    )
                   ],
                 ),
               )),
@@ -97,7 +106,9 @@ class _DetailAudioState extends State<DetailAudio> {
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 5),
                         image: DecorationImage(
-                            image: AssetImage("assets/music_vertical3.jpeg"),
+                            image: AssetImage(
+                              this.widget.booksData[this.widget.index]["img"],
+                            ),
                             fit: BoxFit.cover)),
                   ),
                 ),

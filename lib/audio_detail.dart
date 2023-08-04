@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-
+  final player = AudioPlayer();
 class AudiaPlayer_Page extends StatefulWidget {
-  const AudiaPlayer_Page({super.key});
+  final String audioPath;
+  const AudiaPlayer_Page({super.key,required this.audioPath});
 
   @override
   State<AudiaPlayer_Page> createState() => _AudiaPlayer_PageState();
@@ -11,8 +12,7 @@ class AudiaPlayer_Page extends StatefulWidget {
 
 class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
   int i = 0;
-  double secons = 0;
-  late Color color;
+  Color color = Colors.black;
   late List Books;
   ReadData() async {
     await DefaultAssetBundle.of(context)
@@ -24,7 +24,7 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
     });
   }
 
-  final player = AudioPlayer();
+
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
   bool isplaying = false;
@@ -54,6 +54,13 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
         position = newposition;
       });
     });
+    player.onPlayerComplete.listen((event) {
+      setState(() {
+        position = Duration(seconds: 0);
+        isplaying = false;
+        isRepeat = false;
+      });
+    });
   }
 
   Widget btnStart() {
@@ -64,7 +71,9 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
             if (isplaying) {
               player.pause();
             } else {
-              player.play(AssetSource(Books[i]["voice"]));
+           
+             
+              player.play(AssetSource(this.widget.audioPath));
             }
           });
         },
@@ -85,9 +94,8 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
               i = Books.length - 1;
             }
 
-            player.play(AssetSource(Books[i]["voice"]));
+            player.play(AssetSource(Books[i][this.widget.audioPath]));
           });
-          secons = 0;
           print(i);
         },
         icon: Icon(
@@ -106,9 +114,7 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
               i = 0;
             }
           });
-          secons = 0;
-          player.play(AssetSource(Books[i]["voice"]));
-          print(i);
+          player.play(AssetSource(Books[i][this.widget.audioPath]));
         },
         icon: Icon(
           Icons.skip_next,
@@ -127,6 +133,11 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
             });
           } else if (isRepeat == true) {
             player.setReleaseMode(ReleaseMode.release);
+           
+            setState(() {
+              color = Colors.black;
+              isRepeat = false;
+            });
           }
         },
         icon: Icon(
@@ -137,9 +148,7 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
 
   Widget btnLoop() {
     return IconButton(
-        onPressed: () {
-          
-        },
+        onPressed: () {},
         icon: Icon(
           Icons.loop,
           color: ispaused ? Colors.blue : Colors.black,
@@ -175,7 +184,7 @@ class _AudiaPlayer_PageState extends State<AudiaPlayer_Page> {
             ),
           ),
           Slider(
-              min: secons,
+              min: 0,
               activeColor: Colors.red,
               max: duration.inSeconds.toDouble(),
               value: position.inSeconds.toDouble(),
